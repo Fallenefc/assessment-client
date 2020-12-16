@@ -66,16 +66,13 @@ export default {
     },
     async handleExportDb() {
       try {
-        const response = await axios.get(`${process.env.VUE_APP_SERVER_URL}/api/dbdump`);
-        if (response) {
-              // BLOB NAVIGATOR
-          const url = `${process.env.VUE_APP_SERVER_URL}/dump.sql`;
-          const link = document.createElement('a');
-          link.href = url;
-          link.setAttribute('download', 'download.sql');
-          document.body.appendChild(link);
-          link.click();
-        }
+        await axios.get(`${process.env.VUE_APP_SERVER_URL}/api/dbdump`);
+        const url = `${process.env.VUE_APP_SERVER_URL}/dump.sql`;
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'download.sql');
+        document.body.appendChild(link);
+        link.click();
       } catch (err) {
         console.error(err);
       }
