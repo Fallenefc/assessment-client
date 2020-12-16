@@ -1,17 +1,31 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app-container">
+    <div class="column" v-for="column in columns" :key="column">
+      <Column v-bind:column="column"/>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import Column from './components/Column.vue';
+import axios from 'axios';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Column,
+  },
+  data: function() {
+    return {
+      columns: [1, 2, 3]
+    }
+  },
+  mounted() {
+    axios.get('http://localhost:8000/api/cards').then(res => {
+      this.columns = res.data;
+      console.log(this.columns);
+    });
   }
 }
 </script>
