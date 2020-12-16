@@ -1,12 +1,24 @@
 <template>
-  <div class="hello">
+  <div class="hello" v-on:click="handleOpenModal">
+      <transition name="fade" appear>
+        <div class="modal-overlay" v-on:click="test" v-if="showModal">
+          Title
+          <input type="text" v-model="titleInput" placeholder="title"/>
+          <br>
+          Description
+          <input type="text" v-model="descInput" placeholder="description"/>
+          <br>
+          <button v-on:click="editCard">Change Card</button>
+          <button v-on:click="handleCloseModal">Close</button>
+        </div>
+      </transition>
     {{card.title}}
   </div>
 </template>
 
 <script>
 
-// import axios from 'axios';
+import axios from 'axios';
 
 export default {
   name: 'Card',
@@ -16,12 +28,34 @@ export default {
   data: function() {
     return {
       showModal: false,
+      titleInput: this.card.title,
+      descInput: this.card.description,
     }
   },
   mounted() {
-    console.log(this.handleDeleteColumn);
   },
   methods: {
+    async editCard () {
+      try {
+        axios.put(`http://localhost:8000/api/cards/${this.card.id}`, {
+          title: this.titleInput,
+          description: this.descInput,
+        });
+        this.$emit('edit-card', this.card.id, this.titleInput, this.descInput);
+      } catch (err) {
+        console.error(err);
+      }
+    },
+    handleOpenModal() {
+      this.showModal = true;
+    },
+    handleCloseModal() {
+      this.showModal = false;
+    },
+    test () {
+      this.showModal = false;
+      console.log(this.showModal);
+    }
   }
 }
 </script>
@@ -29,10 +63,12 @@ export default {
 <style scoped>
 
 .modal-overlay {
+  top: 40%;
+  left: 40%;
   width: 500px;
   height: 500px;
   position: absolute;
-  background-color: red;
+  background-color: rgb(255, 0, 0);
   z-index: 5;
 }
 

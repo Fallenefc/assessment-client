@@ -7,13 +7,13 @@
           <input type="text" v-model="editInput"/>
           <button v-on:click="editColumn">Change Title</button>
           <button v-on:click="handleCloseModal">Close</button>
-      </div>
+        </div>
       </transition>
     {{column.title}}
     <button type="button" v-on:click="deleteColumn">X</button>
    </div>
     <div class="cards" v-for="card in column.cards" :key="card">
-      <Card v-bind:card="card"/>
+      <Card v-bind:card="card" v-on:edit-card="editCard"/>
     </div>
     <button v-on:click="addCard">Add Card</button>
   </div>
@@ -71,6 +71,20 @@ export default {
       } catch (err) {
         console.error(err);
       }
+    },
+    editCard (id, title, description) {
+      console.log({id, title, description})
+      this.column.cards = this.column.cards.map(card => {
+        console.log(card)
+        if (card.id === id) {
+          return {
+            ...card,
+            title,
+            description
+          }
+        }
+        else return card;
+      })
     },
     handleCloseModal () {
       this.showModal = false;
