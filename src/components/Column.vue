@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <div class="column-content">
-      <button v-on:click="handleOpenModal">Edit</button>
+  <div class="column-component">
+    <div class="title">
+      <button v-on:click="handleOpenModal" class="title__edit">Edit</button>
       <transition name="fade" appear>
         <div class="modal-overlay" v-if="showModal">
           <input type="text" v-model="editInput"/>
@@ -9,9 +9,9 @@
           <button v-on:click="handleCloseModal">Close</button>
         </div>
       </transition>
-    {{column.title}}
-    <button type="button" v-on:click="deleteColumn">X</button>
-   </div>
+      {{column.title}}
+      <button type="button" class="title__close" v-on:click="deleteColumn">X</button>
+    </div>
     <div class="cards" v-for="card in column.cards" :key="card">
       <Card v-bind:card="card" v-on:edit-card="editCard"/>
     </div>
@@ -96,22 +96,6 @@ export default {
 }
 </script>
 
-<style scoped>
-
-.modal-overlay {
-  width: 500px;
-  height: 500px;
-  position: absolute;
-  background-color: red;
-  z-index: 5;
-}
-
-.cards {
-  border: 2px solid blue;
-}
-
-.column-content {
-  min-width: 200px;
-}
-
+<style lang="scss">
+  @import 'column.scss'
 </style>

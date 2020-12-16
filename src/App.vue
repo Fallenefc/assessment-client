@@ -75,22 +75,6 @@ export default {
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-.app-container {
-  display: flex;
-}
-
-.column {
-  border: 2px solid red;
-  padding: 10px;
-}
+<style lang="scss">
+  @import 'main.scss'
 </style>
