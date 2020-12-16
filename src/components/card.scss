@@ -7,10 +7,9 @@
   justify-content: flex-start;
   align-items: center;
   font-family: sans-serif;
-}
-
-.card:hover {
-  background-color: whitesmoke;
+  &:hover {
+    background-color: whitesmoke;
+  }
 }
 
 .modal-overlay__textarea {

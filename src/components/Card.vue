@@ -52,7 +52,6 @@ export default {
     handleCloseModal() {
       this.$emit('edit-card', this.card.id, this.titleInput, this.descInput);
       this.showModal = false;
-      console.log(this.showModal);
     }
   }
 }

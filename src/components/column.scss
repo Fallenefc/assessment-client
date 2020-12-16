@@ -41,25 +41,24 @@
   margin: 10px;
   border: none;
   background-color: #5CDB95;
-}
-
-.modal-overlay__btn-change:hover, .modal-overlay__btn-close:hover {
-  cursor: pointer;
-  background-color: #379683;
-  color: white;
-  transition: 0.5s ease;
+  &:hover {
+    cursor: pointer;
+    background-color: #379683;
+    color: white;
+    transition: 0.5s ease;
+  }
 }
 
 .cards {
   min-height: 50px;
   background-color: white;
-  border-radius: 5px;
+  border-radius: 8px;
   margin: 5px;
-}
-
-.cards:hover {
-  background-color: rgb(235, 235, 235);
-  cursor: pointer;
+  &:hover {
+    background-color: rgb(235, 235, 235);
+    cursor: pointer;
+    transition: 0.5s ease;
+  }
 }
 
 .title {
@@ -79,10 +78,9 @@
   margin: 5px;
   text-decoration: none;
   border: none;
-}
-
-.title__close, .title__edit:hover {
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .title__close {
@@ -109,4 +107,10 @@
   margin: 10px;
   width: 50%;
   align-self: center;
+  cursor: pointer;
+  &:hover {
+    background-color: #F8E9A1;
+    transition: 0.5s ease;
+  }
 }
+

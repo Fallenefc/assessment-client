@@ -48,9 +48,6 @@ export default {
     Card,
     draggable,
   },
-  mounted() {
-    console.log(this.column);
-  },
   methods: {
     async deleteColumn () {
       try {
@@ -82,9 +79,7 @@ export default {
       }
     },
     editCard (id, title, description) {
-      console.log({id, title, description})
       this.column.cards = this.column.cards.map(card => {
-        console.log(card)
         if (card.id === id) {
           return {
             ...card,
