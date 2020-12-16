@@ -105,7 +105,6 @@ export default {
       try {
         const columnId = event.to.firstChild.id;
         const id = event.clone.firstChild.id;
-        console.log(event);
         await axios.put(`http://localhost:8000/api/cards/${id}`, {
           column_id: +columnId,
         });

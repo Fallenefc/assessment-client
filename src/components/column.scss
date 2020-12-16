@@ -58,7 +58,8 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: rgb(0, 47, 255);
+  background-color: #05386B;
+  font-family: Ubuntu;
   border-radius: 8px;
 }
 
@@ -75,11 +76,13 @@
 }
 
 .title__close {
-  background-color: rgb(245, 35, 35);
+  background-color: rgb(250, 59, 59);
+  font-weight: 600;
 }
 
 .title__edit {
-  background-color: rgb(3, 192, 3);
+  background-color: #5CDB95;
+  font-weight: 600;
 }
 
 .title__column-title {
@@ -90,7 +93,7 @@
 
 .column-component__add-card-btn {
   margin: auto;
-  background-color: yellow;
+  background-color: #EDF5E1;
   border: none;
   padding: 10px;
   margin: 10px;
