@@ -63,10 +63,11 @@ export default {
     },
     async addCard () {
       try {
-        await axios.post(`http://localhost:8000/api/cards/${this.column.id}`, {
+        const response = await axios.post(`http://localhost:8000/api/cards/${this.column.id}`, {
           title: 'New Card',
           description: 'New Card Description',
         });
+        this.$emit('add-card', this.column.id, response.data);
       } catch (err) {
         console.error(err);
       }

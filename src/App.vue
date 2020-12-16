@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="column" v-for="column in columns" :key="column">
-      <Column v-bind:column="column" v-on:delete-column="handleDeleteColumn" v-on:edit-column="handleEditColumnTitle"/>
+      <Column v-bind:column="column" v-on:delete-column="handleDeleteColumn" v-on:edit-column="handleEditColumnTitle" v-on:add-card="handleAddCard"/>
     </div>
     <button v-on:click="handleAddColumn">Add Column</button>
   </div>
@@ -36,6 +36,17 @@ export default {
           ...column,
           title,
         })
+        else return column;
+      });
+    },
+    handleAddCard (id, card) {
+      this.columns = this.columns.map(column => {
+        if (column.id === id) {
+          return ({
+            ...column,
+            cards: [...column.cards, card]
+          })
+        }
         else return column;
       });
     },
