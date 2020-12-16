@@ -18,9 +18,10 @@
   top: 30%;
   left: 40%;
   width: 500px;
-  height: 250px;
+  height: 350px;
+  padding: 20px;
   position: absolute;
-  background-color: red;
+  background-color: #EDF5E1;
   border-radius: 8px;
   z-index: 999;
   display: flex;
@@ -31,12 +32,22 @@
 
 .modal-overlay__input {
   height: 40px;
+  padding: 5px;
 }
 
 .modal-overlay__btn-change, .modal-overlay__btn-close {
   height: 40px;
-  padding: 5px;
+  padding: 10px;
+  margin: 10px;
   border: none;
+  background-color: #5CDB95;
+}
+
+.modal-overlay__btn-change:hover, .modal-overlay__btn-close:hover {
+  cursor: pointer;
+  background-color: #379683;
+  color: white;
+  transition: 0.5s ease;
 }
 
 .cards {
@@ -44,7 +55,6 @@
   background-color: white;
   border-radius: 5px;
   margin: 5px;
-  padding: 10px;
 }
 
 .cards:hover {

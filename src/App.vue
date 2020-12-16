@@ -25,8 +25,6 @@ export default {
   methods: {
     handleDeleteColumn(id) {
       this.columns = this.columns.filter(column => {
-        console.log(column);
-        console.log(id);
         return column.id !== id
       });
     },
@@ -68,7 +66,6 @@ export default {
     try {
       axios.get('http://localhost:8000/api/cards').then(res => {
       this.columns = res.data;
-      console.log(this.columns);
     });
     }
     catch (err) {

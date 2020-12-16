@@ -3,13 +3,13 @@
       <transition name="fade" appear>
         <div class="modal-overlay" v-if="showModal">
           Title
-          <input type="text" v-model="titleInput" placeholder="title"/>
+          <input type="text" v-model="titleInput" placeholder="title" class="modal-overlay__input"/>
           <br>
           Description
-          <input type="text" v-model="descInput" placeholder="description"/>
+          <textarea v-model="descInput" placeholder="description" class="modal-overlay__textarea"/>
           <br>
-          <button v-on:click="editCard">Change Card</button>
-          <button v-on:click="handleCloseModal">Close</button>
+          <button v-on:click="editCard" class="modal-overlay__btn-change">Change Card</button>
+          <button v-on:click="handleCloseModal" class="modal-overlay__btn-close">Close</button>
         </div>
       </transition>
     {{card.title}}
@@ -58,16 +58,6 @@ export default {
 }
 </script>
 
-<style scoped>
-
-.modal-overlay {
-  top: 40%;
-  left: 40%;
-  width: 500px;
-  height: 500px;
-  position: absolute;
-  background-color: rgb(255, 0, 0);
-  z-index: 5;
-}
-
+<style scoped lang="scss">
+  @import 'card.scss'
 </style>
