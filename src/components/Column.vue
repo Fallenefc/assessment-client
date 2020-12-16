@@ -14,9 +14,11 @@
       <button type="button" class="title__close" v-on:click="deleteColumn">X</button>
     </div>
       <div class="column-component">
-    <div class="cards" v-for="card in column.cards" :key="card">
-      <Card v-bind:card="card" v-on:edit-card="editCard"/>
-    </div>
+    <draggable v-model="column.cards" group="cards" @start="drag=true" @end="handleRelationUpdate">
+      <div class="cards" v-for="card in column.cards" :key="card" :id="id"> 
+        <Card v-bind:card="card" v-on:edit-card="editCard"/>
+      </div>
+    </draggable>
   </div>
     <button v-on:click="addCard" class="column-component__add-card-btn">Add Card</button>
   </div>
@@ -26,6 +28,7 @@
 
 import axios from 'axios';
 import Card from './Card';
+import draggable from 'vuedraggable';
 
 export default {
   name: 'Column',
@@ -37,10 +40,13 @@ export default {
     return {
       showModal: false,
       editInput: this.column.title,
+      debounce: false,
+      id: this.column.id,
     }
   },
     components: {
     Card,
+    draggable,
   },
   mounted() {
     console.log(this.column);
@@ -95,6 +101,18 @@ export default {
     handleOpenModal () {
       this.showModal = true;
     },
+    async handleRelationUpdate (event) {
+      try {
+        const columnId = event.to.firstChild.id;
+        const id = event.clone.firstChild.id;
+        console.log(event);
+        await axios.put(`http://localhost:8000/api/cards/${id}`, {
+          column_id: +columnId,
+        });
+      } catch(err) {
+        console.error(err);
+      }
+    }
   }
 }
 </script>

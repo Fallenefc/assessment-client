@@ -21,6 +21,20 @@
   background-color: rgb(214, 214, 214);
 }
 
+.app-container__add-column-btn {
+  height: 10%;
+  width: 5%;
+  min-width: 100px;
+  margin: 5px;
+  position: sticky;
+  border: none;
+  background-color: red;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;

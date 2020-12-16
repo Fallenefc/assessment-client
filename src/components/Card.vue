@@ -1,5 +1,5 @@
 <template>
-  <div class="hello" v-on:click="handleOpenModal">
+  <div class="card" v-on:click="handleOpenModal" :id="card.id">
       <transition name="fade" appear>
         <div class="modal-overlay" v-if="showModal">
           Title

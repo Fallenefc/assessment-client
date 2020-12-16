@@ -3,7 +3,7 @@
     <div class="column" v-for="column in columns" :key="column">
       <Column v-bind:column="column" v-on:delete-column="handleDeleteColumn" v-on:edit-column="handleEditColumnTitle" v-on:add-card="handleAddCard"/>
     </div>
-    <button v-on:click="handleAddColumn">Add Column</button>
+    <button v-on:click="handleAddColumn" class="app-container__add-column-btn">Add Column</button>
   </div>
 </template>
 
