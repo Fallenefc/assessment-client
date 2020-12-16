@@ -1,8 +1,9 @@
 <template>
   <div class="app-container">
     <div class="column" v-for="column in columns" :key="column">
-      <Column v-bind:column="column"/>
+      <Column v-bind:column="column" v-bind:handleDeleteColumn="handleDeleteColumn" v-on:delete-column="handleDeleteColumn"/>
     </div>
+    <button v-on:click="handleAddColumn">Add Column</button>
   </div>
 </template>
 
@@ -18,14 +19,38 @@ export default {
   },
   data: function() {
     return {
-      columns: [1, 2, 3]
+      columns: []
     }
   },
+  methods: {
+    handleDeleteColumn(id) {
+      this.columns = this.columns.filter(column => {
+        console.log(column);
+        console.log(id);
+        return column.id !== id
+      });
+    },
+    async handleAddColumn() {
+      try {
+        const response = await axios.post('http://localhost:8000/api/columns', {
+          title: 'New Column',
+        });
+        this.columns = [...this.columns, response.data];
+      } catch (err) {
+        console.error(err);
+      }
+    },
+  },
   mounted() {
-    axios.get('http://localhost:8000/api/cards').then(res => {
+    try {
+      axios.get('http://localhost:8000/api/cards').then(res => {
       this.columns = res.data;
       console.log(this.columns);
     });
+    }
+    catch (err) {
+      console.log(err);
+    }
   }
 }
 </script>
@@ -38,5 +63,14 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.app-container {
+  display: flex;
+}
+
+.column {
+  border: 2px solid red;
+  padding: 10px;
 }
 </style>
