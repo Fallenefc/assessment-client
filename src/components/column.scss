@@ -1,9 +1,32 @@
+.column-component {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .modal-overlay {
+  top: 30%;
+  left: 40%;
   width: 500px;
-  height: 500px;
+  height: 250px;
   position: absolute;
   background-color: red;
-  z-index: 5;
+  border-radius: 8px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.modal-overlay__input {
+  height: 40px;
+}
+
+.modal-overlay__btn-change, .modal-overlay__btn-close {
+  height: 40px;
+  padding: 5px;
+  border: none;
 }
 
 .cards {
@@ -26,9 +49,6 @@
   justify-content: space-around;
   align-items: center;
   background-color: rgb(0, 47, 255);
-  color: white;
-  font-size: 20px;
-  font-weight: 600;
   border-radius: 8px;
 }
 
@@ -45,9 +65,25 @@
 }
 
 .title__close {
-  background-color: red;
+  background-color: rgb(245, 35, 35);
 }
 
 .title__edit {
-  background-color: green;
+  background-color: rgb(3, 192, 3);
+}
+
+.title__column-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+}
+
+.column-component__add-card-btn {
+  margin: auto;
+  background-color: yellow;
+  border: none;
+  padding: 10px;
+  margin: 10px;
+  width: 50%;
+  align-self: center;
 }

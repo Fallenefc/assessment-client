@@ -4,18 +4,19 @@
       <button v-on:click="handleOpenModal" class="title__edit">Edit</button>
       <transition name="fade" appear>
         <div class="modal-overlay" v-if="showModal">
-          <input type="text" v-model="editInput"/>
-          <button v-on:click="editColumn">Change Title</button>
-          <button v-on:click="handleCloseModal">Close</button>
+          {{column.title}}
+          <input type="text" v-model="editInput" class="modal-overlay__input"/>
+          <button v-on:click="editColumn" class="modal-overlay__btn-change">Change Title</button>
+          <button v-on:click="handleCloseModal" class="modal-overlay__btn-close">Close</button>
         </div>
       </transition>
-      {{column.title}}
+      <span class="title__column-title">{{column.title}}</span>
       <button type="button" class="title__close" v-on:click="deleteColumn">X</button>
     </div>
     <div class="cards" v-for="card in column.cards" :key="card">
       <Card v-bind:card="card" v-on:edit-card="editCard"/>
     </div>
-    <button v-on:click="addCard">Add Card</button>
+    <button v-on:click="addCard" class="column-component__add-card-btn">Add Card</button>
   </div>
 </template>
 
@@ -33,7 +34,7 @@ export default {
   data: function() {
     return {
       showModal: false,
-      editInput: '',
+      editInput: this.column.title,
     }
   },
     components: {
