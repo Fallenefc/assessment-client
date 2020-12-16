@@ -51,6 +51,16 @@ export default {
         console.error(err);
       }
     },
+    async editColumn () {
+      try {
+        await axios.put(`http://localhost:8000/api/columns/${this.column.id}`, {
+          title: this.editInput,
+        })
+        this.$emit('edit-column', this.column.id, this.editInput);
+      } catch (err) {
+        console.error(err);
+      }
+    },
     async addCard () {
       try {
         await axios.post(`http://localhost:8000/api/cards/${this.column.id}`, {
@@ -66,15 +76,6 @@ export default {
     },
     handleOpenModal () {
       this.showModal = true;
-    },
-    async editColumn () {
-      try {
-        await axios.put(`http://localhost:8000/api/columns/${this.column.id}`, {
-          title: this.editInput,
-        })
-      } catch (err) {
-        console.error(err);
-      }
     },
   }
 }

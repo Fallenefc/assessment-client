@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="column" v-for="column in columns" :key="column">
-      <Column v-bind:column="column" v-bind:handleDeleteColumn="handleDeleteColumn" v-on:delete-column="handleDeleteColumn"/>
+      <Column v-bind:column="column" v-on:delete-column="handleDeleteColumn" v-on:edit-column="handleEditColumnTitle"/>
     </div>
     <button v-on:click="handleAddColumn">Add Column</button>
   </div>
@@ -28,6 +28,15 @@ export default {
         console.log(column);
         console.log(id);
         return column.id !== id
+      });
+    },
+    handleEditColumnTitle(id, title) {
+      this.columns = this.columns.map(column => {
+        if (column.id === id) return ({
+          ...column,
+          title,
+        })
+        else return column;
       });
     },
     async handleAddColumn() {
