@@ -21,22 +21,43 @@
   background-color: rgb(214, 214, 214);
 }
 
-.app-container__add-column-btn {
+.app-container__add-column-btn, .app-container__export-btn {
   height: 10%;
   width: 5%;
   min-width: 100px;
   margin: 5px;
   position: sticky;
   border: none;
-  background-color: #FC4445;
   border-radius: 8px;
   color: white;
   font-size: 20px;
   font-weight: 600;
   cursor: pointer;
+
+}
+
+.app-container__add-column-btn {
+  background-color: #FC4445;
   &:hover {
-    background-color: #F13C20;
-    transition: 0.5s ease;
+    background-color: #c42a13;
+    transition: 0.3s ease;
+  }
+}
+
+.add-and-export {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 80%;
+}
+
+.app-container__export-btn{
+  background-color: #FBEEC1;
+  color: black;
+  padding: 10px;
+  &:hover {
+    background-color: #BC986A;
+    transition: 0.3s ease;
   }
 }
 

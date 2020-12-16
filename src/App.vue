@@ -3,7 +3,10 @@
     <div class="column" v-for="column in columns" :key="column">
       <Column v-bind:column="column" v-on:delete-column="handleDeleteColumn" v-on:edit-column="handleEditColumnTitle" v-on:add-card="handleAddCard"/>
     </div>
-    <button v-on:click="handleAddColumn" class="app-container__add-column-btn">Add Column</button>
+    <div class="add-and-export">
+        <button v-on:click="handleAddColumn" class="app-container__add-column-btn">Add Column</button>
+        <button v-on:click="handleExportDb" class="app-container__export-btn">Export DB</button>
+    </div>
   </div>
 </template>
 
@@ -50,7 +53,7 @@ export default {
     },
     async handleAddColumn() {
       try {
-        const response = await axios.post('http://localhost:8000/api/columns', {
+        const response = await axios.post(`${process.env.VUE_APP_SERVER_URL}/api/columns`, {
           title: 'New Column',
         });
         this.columns = [...this.columns, {
@@ -61,10 +64,26 @@ export default {
         console.error(err);
       }
     },
+    async handleExportDb() {
+      try {
+        const response = await axios.get(`${process.env.VUE_APP_SERVER_URL}/api/dbdump`);
+        if (response) {
+              // BLOB NAVIGATOR
+          const url = `${process.env.VUE_APP_SERVER_URL}/dump.sql`;
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', 'download.sql');
+          document.body.appendChild(link);
+          link.click();
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    },
   },
   mounted() {
     try {
-      axios.get('http://localhost:8000/api/cards').then(res => {
+      axios.get(`${process.env.VUE_APP_SERVER_URL}/api/cards`).then(res => {
       this.columns = res.data;
     });
     }

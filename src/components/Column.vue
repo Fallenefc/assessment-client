@@ -51,7 +51,7 @@ export default {
   methods: {
     async deleteColumn () {
       try {
-        await axios.delete(`http://localhost:8000/api/columns/${this.column.id}`);
+        await axios.delete(`${process.env.VUE_APP_SERVER_URL}/api/columns/${this.column.id}`);
         this.$emit('delete-column', this.column.id);
       } catch (err) {
         console.error(err);
@@ -59,7 +59,7 @@ export default {
     },
     async editColumn () {
       try {
-        await axios.put(`http://localhost:8000/api/columns/${this.column.id}`, {
+        await axios.put(`${process.env.VUE_APP_SERVER_URL}/api/columns/${this.column.id}`, {
           title: this.editInput,
         })
         this.$emit('edit-column', this.column.id, this.editInput);
@@ -69,7 +69,7 @@ export default {
     },
     async addCard () {
       try {
-        const response = await axios.post(`http://localhost:8000/api/cards/${this.column.id}`, {
+        const response = await axios.post(`${process.env.VUE_APP_SERVER_URL}/api/cards/${this.column.id}`, {
           title: 'New Card',
           description: 'New Card Description',
         });
@@ -100,7 +100,7 @@ export default {
       try {
         const columnId = event.to.firstChild.id;
         const id = event.clone.firstChild.id;
-        await axios.put(`http://localhost:8000/api/cards/${id}`, {
+        await axios.put(`${process.env.VUE_APP_SERVER_URL}/api/cards/${id}`, {
           column_id: +columnId,
         });
       } catch(err) {

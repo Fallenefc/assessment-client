@@ -37,7 +37,7 @@ export default {
   methods: {
     async editCard () {
       try {
-        axios.put(`http://localhost:8000/api/cards/${this.card.id}`, {
+        axios.put(`${process.env.VUE_APP_SERVER_URL}/api/cards/${this.card.id}`, {
           title: this.titleInput,
           description: this.descInput,
         });
