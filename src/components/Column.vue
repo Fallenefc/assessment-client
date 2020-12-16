@@ -1,6 +1,6 @@
 <template>
-  <div class="column-component">
-    <div class="title">
+<div class="column-container">
+      <div class="title">
       <button v-on:click="handleOpenModal" class="title__edit">Edit</button>
       <transition name="fade" appear>
         <div class="modal-overlay" v-if="showModal">
@@ -13,9 +13,11 @@
       <span class="title__column-title">{{column.title}}</span>
       <button type="button" class="title__close" v-on:click="deleteColumn">X</button>
     </div>
+      <div class="column-component">
     <div class="cards" v-for="card in column.cards" :key="card">
       <Card v-bind:card="card" v-on:edit-card="editCard"/>
     </div>
+  </div>
     <button v-on:click="addCard" class="column-component__add-card-btn">Add Card</button>
   </div>
 </template>

@@ -1,7 +1,17 @@
+.column-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .column-component {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  overflow-y: scroll;
+  height: 100;
+  flex: 1;
+  justify-content: flex-start;
 }
 
 .modal-overlay {

@@ -1,7 +1,7 @@
 <template>
   <div class="hello" v-on:click="handleOpenModal">
       <transition name="fade" appear>
-        <div class="modal-overlay" v-on:click="test" v-if="showModal">
+        <div class="modal-overlay" v-if="showModal">
           Title
           <input type="text" v-model="titleInput" placeholder="title"/>
           <br>
@@ -50,9 +50,7 @@ export default {
       this.showModal = true;
     },
     handleCloseModal() {
-      this.showModal = false;
-    },
-    test () {
+      this.$emit('edit-card', this.card.id, this.titleInput, this.descInput);
       this.showModal = false;
       console.log(this.showModal);
     }
