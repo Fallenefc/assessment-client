@@ -55,7 +55,10 @@ export default {
         const response = await axios.post('http://localhost:8000/api/columns', {
           title: 'New Column',
         });
-        this.columns = [...this.columns, response.data];
+        this.columns = [...this.columns, {
+          ...response.data,
+          cards: [],
+        }];
       } catch (err) {
         console.error(err);
       }
